@@ -1,0 +1,85 @@
+<!doctype html>
+<html ng-app="gacelaApp">
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Gacela Real</title>
+
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+        <style>
+            html                    { overflow-y:scroll; }
+            body                    { padding-top:50px; }
+            #todo-list              { margin-bottom:30px; }
+        </style>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+        <script src="core.js"></script>
+    </head>
+    <body ng-controller="mainController">
+        <div class="container">
+            <div id="todo-form" class="row">
+                <div class="col-sm-8 col-sm-offset-2 text-center">
+                    <form>
+
+                        <h1>Docentes asignados ITC-ISC</h1>
+                        <h4>Este es un desarrollo independiente</h4>
+
+                        <div class="form-group">
+                            Ingresa un correo electrónico a donde se te notificara
+                            <br>
+                            <input type="text" ng-change="validateEmail(formData.email)" class="form-control input-lg text-center" placeholder="Correo Electrónico" ng-model="formData.email" ng-disabled="loading">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg" ng-click="requestAssignatures()" ng-disabled="loading">Buscar asignaturas</button>
+
+                        <div ng-show="!response && loading">
+                            Cargando...
+                        </div>
+
+                        <div ng-show="response && response.status == false && !loading">
+                            <font color="red">{{response.message}}</font>
+                        </div>
+
+                        <div ng-show="response && response.status == true && !loading">
+                            <font color="green">{{response.message}}</font>
+                        </div>
+                    </form>
+                </div>
+                <table ng-show="showTable" class="table table-striped table-condensed table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                <input type="checkbox" ng-model="allRowsChecked" ng-change="selectAllRows()">
+                            </th>
+                            <th>CLAVE&nbsp;</th>
+                            <th>GRUPO&nbsp;</th>
+                            <th>MATERIA&nbsp;</th>
+                            <th>DOCENTE&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="assignatures in assignaturesResponse.assignatures">
+                            <td>
+                                <input title="Selecionar todo" type="checkbox" ng-model="assignatures.isChecked" ng-change="selectRow(assignatures.isChecked)">
+                            </td>
+                            <td>{{assignatures.clave}}</td>
+                            <td>{{assignatures.grupo}}</td>
+                            <td>{{assignatures.materia}}</td>
+                            <td>{{assignatures.maestro}}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <td colspan="6">
+                            <div class="pagination pull-right">
+                                <button title="Debe seleccionar alguno" type="submit" class="btn btn-primary btn-lg" ng-click="requestEmail()" ng-disabled="loading || !almostOneChecked">Enviar</button>
+                            </div>
+                        </td>
+                    </tfoot> 
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
