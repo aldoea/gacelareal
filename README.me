@@ -1,1 +1,41 @@
-# Gacela ITC Scrapper
+# Gacela Real
+## ITC-ISC
+
+Gacela Real is a sideproject to learn webscrapping and node-cron.
+The server starts and initialize a cron job, to scrap the content of the [ITC Official page](https://gacela.itc.mx/inscripciones/consultas/horarios_semestre.php?cve_esp=14), save the data in a database and expose an endpoint to get the assignatures for the app.
+
+### Tech
+
+Gacela Real uses a number of open source projects to work properly:
+
+* [AngularJS] - HTML enhanced for web apps!
+* [Twitter Bootstrap] - great UI boilerplate for modern web apps
+* [node.js] - evented I/O for the backend
+* [Express] - fast node.js network app framework [@tjholowaychuk]
+* Cheerio
+* node-cron
+* [jQuery] - duh
+
+### Todos
+
+ - Iniatilize cron with on start of server
+ - Add Docker
+ - Add Testing
+ - Realease a version to deploy with Heroku
+ - Add suscribed method to notify on changes in schedules and teachers, aslo if a assignature is closed
+
+License
+----
+
+MIT
+
+
+**Free Software, Hell Yeah!**
+
+[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
+
+   [node.js]: <http://nodejs.org>
+   [Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
+   [jQuery]: <http://jquery.com>
+   [express]: <http://expressjs.com>
+   [AngularJS]: <http://angularjs.org>
